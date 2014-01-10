@@ -3,23 +3,20 @@ var coffee = require('coffee-script');
 var gutil = require('gulp-util');
 var formatError = require('./lib/formatError');
 var Buffer = require('buffer').Buffer;
+var defaults = require('defaults');
 
 module.exports = function(opt){
+  var options = defaults(opt, {
+    bare: false,
+    literate: false,
+    sourceMap: false
+  });
+
   function modifyFile(file){
     if (file.isNull()) return this.emit('data', file); // pass along
     if (file.isStream()) return this.emit('error', new Error("gulp-coffee: Streaming not supported"));
 
     var str = file.contents.toString('utf8');
-
-    var options = {};
-
-    if ( opt ) {
-      options = {
-        bare: opt.bare != null ? !!opt.bare : false,
-        literate: opt.literate != null ? !!opt.literate : false,
-        sourceMap: opt.sourceMap != null ? !!opt.sourceMap : false
-      }
-    }
 
     try {
       file.contents = new Buffer(coffee.compile(str, options));
