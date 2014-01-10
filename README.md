@@ -66,7 +66,14 @@ gulp.src('./src/*.coffee')
 
 ## Options
 
-The options object supports the same options as the standard CoffeeScript compiler 
+The options object supports the same options as the standard CoffeeScript compiler, in addition to:
+
+### `ignore`
+
+By default, files whose name matches the pattern `*.js` will be passed through untouched. You can specify your own ignore glob pattern:
+
+    gulp.src('./src/*.*')
+      .pipe(coffee({ignore: '*.{js,css,md}'}))
 
 ## LICENSE
 

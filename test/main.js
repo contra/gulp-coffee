@@ -148,5 +148,53 @@ describe('gulp-coffee', function() {
       });
       stream.write(fakeFile);
     });
+
+    it('should pass through js files by default', function (done) {
+      var stream = coffee();
+      var fakeFile = new gutil.File({
+        path: "test/fixtures/regular.js",
+        base: "test/fixtures",
+        cwd: "test/",
+        contents: fs.readFileSync( 'test/fixtures/regular.js' )
+      });
+
+      stream.on('error', done);
+      stream.on('data', function(newFile){
+        should.exist(newFile);
+        should.exist(newFile.path);
+        should.exist(newFile.relative);
+        should.exist(newFile.contents);
+
+        newFile.path.should.equal("test/fixtures/regular.js");
+        newFile.relative.should.equal("regular.js");
+        String(newFile.contents).should.equal(fs.readFileSync('test/fixtures/regular.js', 'utf8'));
+        done();
+      });
+      stream.write(fakeFile);
+    });
+
+    it('should pass through files that match an ignored pattern', function (done) {
+      var stream = coffee({ignore: '*.me'});
+      var fakeFile = new gutil.File({
+        path: "test/fixtures/ignore.me",
+        base: "test/fixtures",
+        cwd: "test/",
+        contents: fs.readFileSync( 'test/fixtures/ignore.me' )
+      });
+
+      stream.on('error', done);
+      stream.on('data', function(newFile){
+        should.exist(newFile);
+        should.exist(newFile.path);
+        should.exist(newFile.relative);
+        should.exist(newFile.contents);
+
+        newFile.path.should.equal("test/fixtures/ignore.me");
+        newFile.relative.should.equal("ignore.me");
+        String(newFile.contents).should.equal(fs.readFileSync('test/fixtures/ignore.me', 'utf8'));
+        done();
+      });
+      stream.write(fakeFile);
+    });
   });
 });
