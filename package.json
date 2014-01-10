@@ -13,6 +13,7 @@
     "event-stream": "~3.0.20",
     "coffee-script": "~1.6.3",
     "gulp-util": "~2.2.1",
+    "minimatch": "~0.2.14",
     "defaults": "~1.0.0"
   },
   "devDependencies": {
