@@ -30,7 +30,7 @@ module.exports = function (opt) {
     try {
       data = coffee.compile(str, options);
     } catch (err) {
-      return this.emit('error', new Error(err));
+      return this.emit('error', new Error(file.path + '\n' + err.toString()));
     }
 
     if (options.sourceMap) {
