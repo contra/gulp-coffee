@@ -18,15 +18,15 @@ module.exports = function (opt) {
 
     if (opt) {
       options = {
-        bare: opt.bare != null ? !! opt.bare : false,
-        header: opt.header != null ? !! opt.header : false,
-        literate: opt.literate != null ? !! opt.literate : options.literate,
-        sourceMap: opt.sourceMap != null ? !! opt.sourceMap : false,
-        sourceRoot: opt.sourceRoot != null ? !! opt.sourceRoot : false,
+        bare: opt.bare !== null ? !! opt.bare : false,
+        header: opt.header !== null ? !! opt.header : false,
+        literate: opt.literate !== null ? !! opt.literate : options.literate,
+        sourceMap: opt.sourceMap !== null ? !! opt.sourceMap : false,
+        sourceRoot: opt.sourceRoot !== null ? !! opt.sourceRoot : false,
         filename: file.path,
         sourceFiles: [path.basename(file.path)],
         generatedFile: path.basename(dest)
-      }
+      };
     }
 
     try {

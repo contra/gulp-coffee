@@ -14,7 +14,7 @@ var createFile = function (filepath, contents) {
     cwd: path.dirname(base),
     contents: contents
   });
-}
+};
 
 describe('gulp-coffee', function() {
   describe('coffee()', function() {
@@ -47,7 +47,7 @@ describe('gulp-coffee', function() {
           if (done && !expected.length) {
             done.call(this);
           }
-        }
+        };
       };
     });
 
