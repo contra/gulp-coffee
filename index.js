@@ -3,8 +3,10 @@ var coffee = require('coffee-script');
 var gutil = require('gulp-util');
 var Buffer = require('buffer').Buffer;
 var path = require('path');
+var merge = require('merge');
 
-module.exports = function (opt) {
+module.exports = function (options) {
+
   function modifyFile(file) {
     if (file.isNull()) return this.emit('data', file); // pass along
     if (file.isStream()) return this.emit('error', new Error("gulp-coffee: Streaming not supported"));
@@ -13,31 +15,24 @@ module.exports = function (opt) {
     var str = file.contents.toString('utf8');
     var dest = gutil.replaceExtension(file.path, ".js");
 
-    var options = {
-      literate: /\.(litcoffee|coffee\.md)$/.test(file.path)
-    };
-
-    // TODO: this is horrible, figure out a better way to copy these options over
-    if (opt) {
-      options = {
-        bare: opt.bare != null ? !! opt.bare : false,
-        header: opt.header != null ? !! opt.header : false,
-        literate: opt.literate != null ? !! opt.literate : options.literate,
-        sourceMap: opt.sourceMap != null ? !! opt.sourceMap : false,
-        sourceRoot: opt.sourceRoot != null ? !! opt.sourceRoot : false,
-        filename: file.path,
-        sourceFiles: [path.basename(file.path)],
-        generatedFile: path.basename(dest)
-      };
-    }
+    var _options = merge({
+      bare: false,
+      header: false,
+      sourceMap: false,
+      sourceRoot: false,
+      literate: /\.(litcoffee|coffee\.md)$/.test(file.path),
+      filename: file.path,
+      sourceFiles: [path.basename(file.path)],
+      generatedFile: path.basename(dest)
+    }, options);
 
     try {
-      data = coffee.compile(str, options);
+      data = coffee.compile(str, _options);
     } catch (err) {
       return this.emit('error', new Error(err));
     }
 
-    if (options.sourceMap) {
+    if (_options.sourceMap) {
       sourceMapFile = new gutil.File({
         cwd: file.cwd,
         base: file.base,
