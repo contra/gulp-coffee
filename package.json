@@ -10,7 +10,7 @@
     "gulpplugin"
   ],
   "dependencies": {
-    "coffee-script": "1.7.0",
+    "coffee-script": "^1.7.0",
     "event-stream": "^3.0.20",
     "gulp-util": "^2.2.1",
     "merge": "^1.1.3",
