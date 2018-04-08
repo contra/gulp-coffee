@@ -60,7 +60,7 @@ describe('gulp-coffee', function() {
 
     it('should concat two files', function(done) {
       var filepath = '/home/contra/test/file.coffee';
-      var contents = new Buffer('a = 2');
+      var contents = Buffer.from('a = 2');
       var opts = {bare: true};
       var expected = coffeescript.compile(String(contents), opts);
 
@@ -72,7 +72,7 @@ describe('gulp-coffee', function() {
 
     it('should emit errors correctly', function(done) {
       var filepath = '/home/contra/test/file.coffee';
-      var contents = new Buffer('if a()\r\n  then huh');
+      var contents = Buffer.from('if a()\r\n  then huh');
 
       coffee({bare: true})
         .on('error', function(err) {
@@ -87,7 +87,7 @@ describe('gulp-coffee', function() {
 
     it('should compile a file (no bare)', function(done) {
       var filepath = 'test/fixtures/grammar.coffee';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var expected = coffeescript.compile(String(contents));
 
       coffee()
@@ -98,7 +98,7 @@ describe('gulp-coffee', function() {
 
     it('should compile a file (with bare)', function(done) {
       var filepath = 'test/fixtures/grammar.coffee';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var opts = {bare: true};
       var expected = coffeescript.compile(String(contents), opts);
 
@@ -110,7 +110,7 @@ describe('gulp-coffee', function() {
 
     it('should compile a file with source map', function(done) {
       var filepath = 'test/fixtures/grammar.coffee';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var expected = coffeescript.compile(String(contents), {
         sourceMap: true,
         sourceFiles: ['grammar.coffee'],
@@ -128,7 +128,7 @@ describe('gulp-coffee', function() {
 
     it('should compile a file with bare and with source map', function(done) {
       var filepath = 'test/fixtures/grammar.coffee';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var expected = coffeescript.compile(String(contents), {
         bare: true,
         sourceMap: true,
@@ -146,7 +146,7 @@ describe('gulp-coffee', function() {
 
     it('should compile a file (no header)', function(done) {
       var filepath = 'test/fixtures/grammar.coffee';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var expected = coffeescript.compile(String(contents), {header: false});
 
       coffee()
@@ -157,7 +157,7 @@ describe('gulp-coffee', function() {
 
     it('should compile a file (with header)', function(done) {
       var filepath = 'test/fixtures/grammar.coffee';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var expected = coffeescript.compile(String(contents), {header: true});
 
       coffee({header: true})
@@ -168,7 +168,7 @@ describe('gulp-coffee', function() {
 
     it('should compile a literate file', function(done) {
       var filepath = 'test/fixtures/journo.litcoffee';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var opts = {literate: true};
       var expected = coffeescript.compile(String(contents), opts);
 
@@ -180,7 +180,7 @@ describe('gulp-coffee', function() {
 
     it('should compile a literate file (implicit)', function(done) {
       var filepath = 'test/fixtures/journo.litcoffee';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var expected = coffeescript.compile(String(contents), {literate: true});
 
       coffee()
@@ -191,7 +191,7 @@ describe('gulp-coffee', function() {
 
     it('should compile a literate file (with bare)', function(done) {
       var filepath = 'test/fixtures/journo.litcoffee';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var opts = {literate: true, bare: true};
       var expected = coffeescript.compile(String(contents), opts);
 
@@ -203,7 +203,7 @@ describe('gulp-coffee', function() {
 
     it('should compile a literate file with source map', function(done) {
       var filepath = 'test/fixtures/journo.litcoffee';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var expected = coffeescript.compile(String(contents), {
         literate: true,
         sourceMap: true,
@@ -221,7 +221,7 @@ describe('gulp-coffee', function() {
 
     it('should compile a literate file with bare and with source map', function(done) {
       var filepath = 'test/fixtures/journo.litcoffee';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var expected = coffeescript.compile(String(contents), {
         literate: true,
         bare: true,
@@ -240,7 +240,7 @@ describe('gulp-coffee', function() {
 
     it('should rename a literate markdown file', function(done) {
       var filepath = 'test/fixtures/journo.coffee.md';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var opts = {literate: true};
       var expected = coffeescript.compile(String(contents), opts);
 
@@ -252,7 +252,7 @@ describe('gulp-coffee', function() {
 
     it('should accept a custom coffeescript version', function(done) {
       var filepath = 'test/fixtures/grammar.coffee';
-      var contents = new Buffer(fs.readFileSync(filepath));
+      var contents = Buffer.from(fs.readFileSync(filepath));
       var wasSpyCalled = false;
       var opts = {
         coffee: {

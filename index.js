@@ -38,9 +38,9 @@ module.exports = function (opt) {
 
     if (data && data.v3SourceMap && file.sourceMap) {
       applySourceMap(file, data.v3SourceMap);
-      file.contents = new Buffer(data.js);
+      file.contents = Buffer.from(data.js);
     } else {
-      file.contents = new Buffer(data);
+      file.contents = Buffer.from(data);
     }
 
     file.path = dest;
