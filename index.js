@@ -3,7 +3,6 @@ var applySourceMap = require('vinyl-sourcemaps-apply');
 var path = require('path');
 var replaceExt = require('replace-ext');
 var PluginError = require('plugin-error');
-var merge = require('merge');
 
 module.exports = function (opt) {
   function replaceExtension(path) {
@@ -19,7 +18,7 @@ module.exports = function (opt) {
     var str = file.contents.toString('utf8');
     var dest = replaceExtension(file.path);
 
-    var options = merge({
+    var options = Object.assign({
       bare: false,
       coffee: require('coffeescript'),
       header: false,
