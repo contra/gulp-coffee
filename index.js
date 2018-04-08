@@ -1,6 +1,5 @@
 var through = require('through2');
 var applySourceMap = require('vinyl-sourcemaps-apply');
-var path = require('path');
 var replaceExt = require('replace-ext');
 var PluginError = require('plugin-error');
 

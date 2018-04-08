@@ -4,7 +4,6 @@ var coffeescript = require('coffeescript');
 var fs = require('fs');
 var path = require('path');
 var sourcemaps = require('gulp-sourcemaps');
-var stream = require('stream');
 var File = require('vinyl');
 require('mocha');
 
@@ -79,7 +78,7 @@ describe('gulp-coffee', function() {
           err.message.should.equal('unexpected then');
           done();
         })
-        .on('data', function(newFile) {
+        .on('data', function() {
           throw new Error('no file should have been emitted!');
         })
         .write(createFile(filepath, contents));
