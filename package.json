@@ -10,20 +10,17 @@
     "gulpplugin"
   ],
   "dependencies": {
-    "coffeescript": "^2.1.0",
-    "plugin-error": "^1.0.0",
-    "replace-ext": "^1.0.0",
-    "through2": "^2.0.1",
-    "vinyl-sourcemaps-apply": "^0.2.1"
+		"coffeescript": "^2.5.1",
+		"plugin-error": "^1.0.1",
+		"replace-ext": "^2.0.0",
+		"through2": "^3.0.1",
+		"vinyl-sourcemaps-apply": "^0.2.1"
   },
   "devDependencies": {
-    "gulp-sourcemaps": "^2.6.2",
-    "mocha": "^5.0.0",
-    "should": "^13.0.0",
-    "vinyl": "^2.1.0"
-  },
-  "scripts": {
-    "test": "mocha"
+		"gulp-sourcemaps": "^2.6.5",
+		"mocha": "^8.0.1",
+		"should": "^13.2.3",
+		"vinyl": "^2.2.0"
   },
   "engines": {
     "node": ">= 6.0.0"
