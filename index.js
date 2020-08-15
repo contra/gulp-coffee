@@ -36,7 +36,9 @@ module.exports = function (opt) {
     }
 
     if (data && data.v3SourceMap && file.sourceMap) {
-      applySourceMap(file, data.v3SourceMap);
+      var sourceMap = JSON.parse(data.v3SourceMap);
+      sourceMap.file = file.sourceMap.file;
+      applySourceMap(file, sourceMap);
       file.contents = Buffer.from(data.js);
     } else {
       file.contents = Buffer.from(data);
